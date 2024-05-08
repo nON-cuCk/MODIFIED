@@ -68,7 +68,7 @@ Route::group(['middleware' => ['role:admin|Head']], function () {
     Route::get('location', Location::class);
     Route::get('inspection', Inspection::class);
     Route::get('fire-extinguisher', FireExtinguisher::class);
-    Route::get('cas', Form::class);
+    Route::get('form', Form::class);
     Route::get('setting', setting::class);
     Route::get('record', RecordList::class);
     Route::get('map', BuildingList::class);
