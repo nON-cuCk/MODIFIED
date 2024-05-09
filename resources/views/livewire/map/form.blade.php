@@ -56,18 +56,17 @@
                                     <div class="form-group local-forms">
                                         <label>Building / Department</label>
                                         <select class="form-control select" wire:model="building" @if($viewMode) disabled @endif>
-                                            <option value="" selected>Select a Building</option>
-                                            @foreach ($locations as $location)
-                                                <option value="{{ $location->id }}">{{ $location->building }}</option>
-                                            @endforeach
-                                        </select>
+    @foreach ($locations as $location)
+        <option value="{{ $location->id }}">{{ $location->building }}</option>
+    @endforeach
+</select>
+
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group local-forms">
                                         <label>Floor</label>
                                         <select class="form-control select" wire:model="floor" @if($viewMode) disabled @endif>
-                                            <option value="" selected>Select a Floor</option>
                                             @foreach ($locations as $location)
                                                 <option value="{{ $location->id }}">{{ $location->floor }}</option>
                                             @endforeach
@@ -78,7 +77,6 @@
                                     <div class="form-group local-forms">
                                         <label>Room / Office</label>
                                         <select class="form-control select" wire:model="room" @if($viewMode) disabled @endif>
-                                            <option value="" selected>Select a Room</option>
                                             @foreach ($locations as $location)
                                                 <option value="{{ $location->id }}">{{ $location->room }}</option>
                                             @endforeach

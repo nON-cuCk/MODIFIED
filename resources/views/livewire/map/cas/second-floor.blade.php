@@ -134,8 +134,6 @@
 #tooltipText {
     z-index: 9999;
     position: fixed;
-    left: 9.9%;
-    top: 50%;
     transform: translate(-50%, -50%);
     background-color: #000;
     color: #fff;
@@ -145,20 +143,31 @@
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s ease;
-    width: 50%;
-    height: 25%;
+    width: 450px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+#tooltipText button {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+}
+
 #tooltipText.active {
-    top: 120px;
-    left: 50%;
+    top: 550px;
+    left: 1350px;
     visibility: visible;
     opacity: 1;
 }
 
     #tooltip:hover #tooltipText,
     #tooltip.active {
-        top:120px;
-        left: 50%;
+        top:550px;
+        left: 1350px;
         visibility: visible;
         opacity: 1;
     }
@@ -175,37 +184,48 @@
 <div class="scroll-container">
     <div id="second-floor" class="floor-content">
         <img src="{{ asset('assets/img/CasSecondFloor.png') }}" alt="SecondFloor" width="1000px" height="300px">
+
 <div id="tooltip">
-    <span id="tooltipText">TooltipText <button onclick="hideTooltip('tooltipText');">Close</button></span>
-    <span class="FCRH" onclick="keepTooltipVisible('tooltipText');"><i class="fas fa-eye eye-icon"></i></span>
+    <span id="tooltipText"> 
+        <h1>Hey eyes here</h1>
+        <button onclick="hideTooltip('tooltipText');">Close</button>
+    </span>
+    <span class="FCRH"><i class="fas fa-eye eye-icon"></i></span>
+</div>
+<span class="FCRH" onclick="openModal('FACULTY COMPUTING AND RESEATCH CENTER')"><i class="fas fa-edit edit-icon"></i></span>
+
+<div id="tooltip">
+<span id="tooltipText"> 
+<h1>No Fire Extingsher Assinged here!</h1>
+        <button onclick="hideTooltip('tooltipText');">Close</button>
+    </span>
+<span class="RA"><i class="fas fa-eye eye-icon"></i></span>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- 
           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <!-- <span class="FCRH" onclick="openModal('FACULTY COMPUTING AND RESEATCH CENTER')"><i class="fas fa-edit edit-icon"></i></span>
-          <span class="RA" onclick="openModal('FACULTY COMPUTING AND RESEATCH CENTER')"><i class="fas fa-eye eye-icon"></i></span>
           <span class="RA" onclick="openModal('FACULTY COMPUTING AND RESEATCH CENTER')"><i class="fas fa-edit edit-icon"></i></span>
           <span class="LRA" onclick="openModal('FACULTY COMPUTING AND RESEATCH CENTER')"><i class="fas fa-eye eye-icon"></i></span>
           <span class="LRA" onclick="openModal('FACULTY COMPUTING AND RESEATCH CENTER')"><i class="fas fa-edit edit-icon"></i></span>
@@ -232,14 +252,3 @@
         </div>
 
 </div>
-<script>
-function keepTooltipVisible(tooltipId) {
-    var tooltip = document.getElementById(tooltipId);
-    tooltip.classList.add('active'); // Add a class to indicate active visibility
-}
-
-function hideTooltip(tooltipId) {
-    var tooltip = document.getElementById(tooltipId);
-    tooltip.classList.remove('active'); // Remove the class when tooltip should be hidden
-}
-</script>

@@ -28,25 +28,55 @@ class Form extends Component
         $this->resetValidation();
         $this->resetErrorBag();
     }
-    public function openViewModal($fireId)
-    {
-        
-        $fire = FireList::findOrFail($fireId);
-        $this->fireId = $fireId;
-        $this->type = $fire->type;
-        $this->firename = $fire->firename;
-        $this->serial_number = $fire->serial_number;
-        $this->building = $fire->building;
-        $this->floor = $fire->floor;
-        $this->room = $fire->room;
-        $this->installation_date = $fire->installation_date;
-        $this->expiration_date = $fire->expiration_date;
-        $this->description = $fire->description;
-        $this->status = $fire->status;
 
-        $this->viewMode = true; // Set $viewMode to true when opening the view modal
-        $this->emit('openViewModal');
-    }
+    public function openViewModal($fireId)
+{
+    $fire = FireList::findOrFail($fireId);
+    $this->fireId = $fireId;
+    $this->type = $fire->type;
+    $this->firename = $fire->firename;
+    $this->serial_number = $fire->serial_number;
+    
+    // Fetch building name based on building ID
+    $buildingInfo = LocationList::findOrFail($fire->building);
+    $this->building = $buildingInfo->building;
+
+    // Fetch floor name based on floor ID
+    $floorInfo = LocationList::findOrFail($fire->floor);
+    $this->floor = $floorInfo->floor;
+
+    // Fetch room name based on room ID
+    $roomInfo = LocationList::findOrFail($fire->room);
+    $this->room = $roomInfo->room;
+
+    $this->installation_date = $fire->installation_date;
+    $this->expiration_date = $fire->expiration_date;
+    $this->description = $fire->description;
+    $this->status = $fire->status;
+
+    $this->viewMode = true; // Set $viewMode to true when opening the view modal
+    $this->emit('openViewModal');
+}
+
+    // public function openViewModal($fireId)
+    // {
+        
+    //     $fire = FireList::findOrFail($fireId);
+    //     $this->fireId = $fireId;
+    //     $this->type = $fire->type;
+    //     $this->firename = $fire->firename;
+    //     $this->serial_number = $fire->serial_number;
+    //     $this->building = $fire->building;
+    //     $this->floor = $fire->floor;
+    //     $this->room = $fire->room;
+    //     $this->installation_date = $fire->installation_date;
+    //     $this->expiration_date = $fire->expiration_date;
+    //     $this->description = $fire->description;
+    //     $this->status = $fire->status;
+
+    //     $this->viewMode = true; 
+    //     $this->emit('openViewModal');
+    // }
     public function fireId($fireId)
     {
         $this->resetInputFields();
@@ -137,7 +167,19 @@ class Form extends Component
         $this->emit('refreshTable');
     }
 
-
+    // public function render()
+    // {
+    //     $fire = FireList::all();
+    //     $types = TypeList::all();
+    //     $locations = LocationList::select('building')->distinct()->get();
+    
+    //     return view('livewire.map.form', [
+    //         'fire' => $fire,
+    //         'types' => $types,
+    //         'locations' => $locations,
+    //     ]);
+    // }
+    
     public function render()
     {
         $fire = FireList::all();
