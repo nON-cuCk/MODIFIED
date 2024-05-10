@@ -1,28 +1,4 @@
-<div>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="modal-content" style="max-width: 800px; width: 100%;">
-            <div class="modal-header" style="background: linear-gradient(to right, #3498db, #2e37a4); color:white;">
-                <h1 class="modal-title fs-5" style="color: white;">
-                    @if ($fireId)
-                        Edit Fire Extinguisher
-                    @elseif ($viewMode)
-                        View Fire Extinguisher
-                    @else
-                        Install Fire Extinguisher
-                    @endif
-                </h1>
-                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"  aria-label="Close"></button>
-            </div>
-            @if ($errors->any())
-                <span class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </span>
-            @endif
-            <form wire:submit.prevent="store" enctype="multipart/form-data">
+<form wire:submit.prevent="store" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-10 mx-auto">
@@ -130,19 +106,3 @@
                     @endif
                 </div>
             </form>
-        </div>
-    </div>
-</div>
-@push('scripts')
-    <script>
-        $(function(){
-            $('#expiry-date').datetimepicker({
-                format: 'Y-MM-DD'
-            })
-            .on('dp.change',function(ev){
-                var data = $('#expiry-date').val();
-                Livewire.emit('expiration_date', data);
-            })
-        });
-    </script>
-@endpush

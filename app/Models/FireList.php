@@ -12,11 +12,27 @@ class FireList extends Model
     protected $fillable = [
         'type', 'firename', 'serial_number','building','floor','room','installation_date','expiration_date', 'description','status',
     ];
-
+//this is for feching of data in the database "fire_list"
     public function fireex()
     {
         return $this->belongsTo(TypeList::class, 'type', 'id');
     }
+    public function firebuilding()
+    {
+        return $this->belongsTo(LocationList::class, 'building_id', 'id');
+    }
+    public function firefloor()
+    {
+        return $this->belongsTo(LocationList::class, 'floor_id', 'id');
+    }
+    public function fireroom()
+    {
+        return $this->belongsTo(LocationList::class, 'room_id', 'id');
+    }
+
+
+
+    // this is for other purposes
     public function fireLocation()
     {
         return $this->belongsTo(LocationList::class, 'building', 'floor', 'room', 'id');

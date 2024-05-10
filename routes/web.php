@@ -30,6 +30,8 @@ use App\Http\Livewire\Department\DepartmentList;
 use App\Http\Livewire\Task\TaskManager;
 use App\Http\Livewire\Report\Analytical;
 
+use App\Http\Livewire\FetchMe;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +77,8 @@ Route::group(['middleware' => ['role:admin|Head']], function () {
     Route::get('/cas-floor', CasFloor::class)->name('cas.floor');
     Route::get('/ground-floor', GroundFloor::class)->name('ground.floor');
     Route::get('/report', Analytical::class)->name('ground.floor');
-    Route::get('/test', Test::class)->name('test');
+    Route::match(['get', 'post'], '/test', Test::class)->name('test');
+    Route::get('/fetch-me', FetchMe::class);
 
 
 

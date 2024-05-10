@@ -1,5 +1,43 @@
 <style>
 
+.popup {
+    margin-top: 18px;
+    display: flex;
+    margin-left: 3%;
+    flex-direction: row;
+    background-color: none;
+    background:none;
+
+}
+
+.half {
+    border: none; /* Just for visualization */
+}
+
+.first-half th{ 
+    display: flex;
+    flex-direction: row;
+    background: transparent;
+    color: blue;
+    font-size: 15px;
+    line-height: 1.5; 
+    padding: 5px 10px; /* Adjust the padding to increase or decrease vertical spacing */
+    border-right: 25px;
+}
+
+
+
+.second-half tr td{
+    background-color: black; /* Set the background color of the first half to green */
+    display: flex;
+    flex-direction: row;
+    background: none;
+    color: blue;
+    font-size: 15px;
+    line-height: 1.5; 
+    padding: 5px 10px; /* Adjust the padding to increase or decrease vertical spacing */
+    border-right: 25px;
+}
 
     .floor-content {
         display: inline-block;
@@ -135,19 +173,18 @@
     z-index: 9999;
     position: fixed;
     transform: translate(-50%, -50%);
-    background-color: #000;
+    background-color: #f2f2f2;
     color: #fff;
     white-space: nowrap;
-    padding: 10px 15px;
     border-radius: 7px;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s ease;
-    width: 450px;
-    height: 550px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 255px;
+    height: 400px;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding-top: 10px;
 }
 
 #tooltipText button {
@@ -174,7 +211,6 @@
     #tooltipText.active .eye-icon {
         color: red; /* Change the color to red when #tooltipText has the active class */
     }
-
 @media (max-width: 768px) {
         .horizontal-scroll-container {
             width: 800px; /* Adjust this value based on your desired width for smaller screens */
@@ -187,16 +223,71 @@
 
 <div id="tooltip">
     <span id="tooltipText"> 
-        <h1>Hey eyes here</h1>
-        <button onclick="hideTooltip('tooltipText');">Close</button>
+        <h1>TEXT GOES HERE</h1>
+        <div class="popup">
+            <div class="half first-half">
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Firename</th>
+                        <th>Serial Number</th>
+                        <th>Building</th>
+                        <th>Floor</th>
+                        <th>Room</th>
+                        <th>Installtion date</th>
+                        <th>expiration date</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="half second-half">
+                <table>
+                @foreach($fire_list as $fire_fetch_list)
+                <tr>
+            <td>{{ $fire_fetch_list->fireex->description }}</td>
+            <td>{{ $fire_fetch_list['firename']}}</td>
+            <td>{{ $fire_fetch_list['serial_number']}}</td>
+            <td>{{ $fire_fetch_list->firebuilding->building }}</td>
+            <td>{{ $fire_fetch_list->firefloor->floor }}</td>
+            <td>{{ $fire_fetch_list->fireroom->room }}</td>
+            <td>{{ $fire_fetch_list['installation_date']}}</td>
+            <td>{{ $fire_fetch_list['expiration_date']}}</td>
+            <td>{{ $fire_fetch_list['status']}}</td>
+        </tr>
+        @endforeach
+                </table>
+            </div>
+        </div>
+        <!-- <button onclick="hideTooltip('tooltipText');">Close</button> -->
     </span>
     <span class="FCRH"><i class="fas fa-eye eye-icon"></i></span>
 </div>
 <span class="FCRH" onclick="openModal('FACULTY COMPUTING AND RESEATCH CENTER')"><i class="fas fa-edit edit-icon"></i></span>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div id="tooltip">
 <span id="tooltipText"> 
-<h1>No Fire Extingsher Assinged here!</h1>
+<h1>No Fire Extinguisher Assinged here!</h1>
         <button onclick="hideTooltip('tooltipText');">Close</button>
     </span>
 <span class="RA"><i class="fas fa-eye eye-icon"></i></span>
@@ -252,3 +343,6 @@
         </div>
 
 </div>
+
+
+
